@@ -1,0 +1,402 @@
+<!-- ENHANCED DISCOVER PAGE WITH RED THEME -->
+
+<!-- Hero Header Section with Gradient -->
+<section class="container-fluid discover-hero-section py-5 px-5">
+  <div class="row align-items-center">
+    <div class="col-lg-6 col-md-12 mb-4 mb-lg-0">
+      <div class="discover-header-content">
+        <div class="d-flex align-items-center mb-3">
+          <h1 class="display-4 fw-bold text-white mb-0 me-3">Discover Daily</h1>
+          <div class="calendar-icon-wrapper">
+            <div class="calender-icon text-white"> <i class="bi bi-calendar-week"></i> </div>
+          </div>
+        </div>
+        <p class="text-white-50 fs-5 mb-4">Explore thousands of movies and shows curated just for you</p>
+        <div class="stats-wrapper d-flex gap-4">
+          <div class="stat-item">
+            <h3 class="text-white fw-bold mb-0">2,500+</h3>
+            <p class="text-white small mb-0">Movies</p>
+          </div>
+          <div class="stat-item">
+            <h3 class="text-white fw-bold mb-0">1,200+</h3>
+            <p class="text-white small mb-0">TV Shows</p>
+          </div>
+          <div class="stat-item">
+            <h3 class="text-white fw-bold mb-0">50+</h3>
+            <p class="text-white small mb-0">Categories</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="col-lg-6 col-md-12">
+      <div class="provider-filter-section">
+        <h5 class="text-white mb-3 fw-semibold">
+          <i class="bi bi-filter-circle me-2"></i>Filter by Provider
+        </h5>
+        <div class="provider-chips-wrapper">
+          <div class="provider-chip" (click)="filterStreamProvider('Netflix')">
+            <img src="assets/images/netflix.png" alt="Netflix" />
+            <span>Netflix</span>
+          </div>
+          <div class="provider-chip" (click)="filterStreamProvider('HBO')">
+            <img src="assets/images/hbo.png" alt="HBO" />
+            <span>HBO Max</span>
+          </div>
+          <div class="provider-chip" (click)="filterStreamProvider('Amazon')">
+            <img src="assets/images/amznprime.webp" alt="Amazon Prime" />
+            <span>Prime</span>
+          </div>
+          <div class="provider-chip" (click)="filterStreamProvider('Hulu')">
+            <img src="assets/images/hulu.png" alt="Hulu" />
+            <span>Hulu</span>
+          </div>
+          <div class="provider-chip" (click)="filterStreamProvider('Showmax')">
+            <img src="assets/images/showmax.webp" alt="Showmax" />
+            <span>Showmax</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Quick Filters Bar -->
+<section class="container-fluid px-5 py-3 quick-filters-bar">
+  <div class="d-flex justify-content-between align-items-center flex-wrap gap-3">
+    <div class="d-flex gap-2 flex-wrap">
+      <button class="quick-filter-btn active">
+        <i class="bi bi-stars me-2"></i>Popular
+      </button>
+      <button class="quick-filter-btn">
+        <i class="bi bi-calendar-event me-2"></i>New Releases
+      </button>
+      <button class="quick-filter-btn">
+        <i class="bi bi-trophy me-2"></i>Top Rated
+      </button>
+      <button class="quick-filter-btn">
+        <i class="bi bi-heart me-2"></i>Trending
+      </button>
+    </div>
+    <div class="results-count">
+      <span class="badge bg-danger px-3 py-2">{{ filterMovieType?.length || 0 }} Results</span>
+    </div>
+  </div>
+</section>
+
+<!-- Main Content Grid with Enhanced Sidebar -->
+<section class="container-fluid px-5 py-4">
+  <div class="row g-4">
+    <!-- Enhanced Sidebar -->
+    <div class="col-lg-3 col-md-4">
+      <div class="sidebar-sticky">
+        <!-- Search Box -->
+        <div class="search-wrapper mb-4">
+          <div class="search-box-enhanced">
+            <i class="bi bi-search search-icon"></i>
+            <input
+              class="form-control"
+              type="search"
+              placeholder="Search movies, shows..."
+              aria-label="Search"
+              [(ngModel)]="searchTerm"
+              (keyup)="search($event)"
+            />
+            <button class="clear-search-btn text-black" *ngIf="searchTerm">
+              <i class="bi bi-x-circle"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- Filter Card -->
+        <div class="filter-card mb-4">
+          <div class="filter-header">
+            <h5 class="mb-0 text-black fw-bold">
+              <i class="bi bi-funnel-fill me-2"></i>Filters
+            </h5>
+            <button class="btn btn-sm btn-outline-danger text-black" (click)="filterYear('')">
+              <i class="bi bi-arrow-counterclockwise me-1"></i>Reset
+            </button>
+          </div>
+
+          <div class="filter-body">
+            <!-- Quick Actions -->
+            <div class="mb-4">
+              <h6 class="filter-section-title text-black">Quick Actions</h6>
+              <div class="d-flex gap-2 flex-wrap">
+                <button
+                  class="filter-action-btn"
+                  (click)="filterYear('')"
+                >
+                  <i class="bi bi-grid-3x3-gap me-1"></i>All
+                </button>
+                <button
+                  class="filter-action-btn"
+                  (click)="sortDataAlphabetically()"
+                >
+                  <i class="bi bi-sort-alpha-down me-1"></i>A-Z
+                </button>
+              </div>
+            </div>
+
+            <!-- Genre Filter -->
+            <div class="mb-4">
+              <h6 class="filter-section-title text-black">
+                <i class="bi bi-film me-2"></i>Genre
+              </h6>
+              <div class="genre-buttons">
+                <button class="genre-btn" (click)="filterGenre('Action')">
+                  <i class="bi bi-lightning-charge-fill me-2"></i>Action
+                </button>
+                <button class="genre-btn" (click)="filterGenre('Adventure')">
+                  <i class="bi bi-compass-fill me-2"></i>Adventure
+                </button>
+                <button class="genre-btn" (click)="filterGenre('Thriller')">
+                  <i class="bi bi-eye-fill me-2"></i>Thriller
+                </button>
+                <button class="genre-btn" (click)="filterGenre('Comedy')">
+                  <i class="bi bi-emoji-laughing-fill me-2"></i>Comedy
+                </button>
+                <button class="genre-btn" (click)="filterGenre('Romance')">
+                  <i class="bi bi-heart-fill me-2"></i>Romance
+                </button>
+                <button class="genre-btn" (click)="filterGenre('Documentary')">
+                  <i class="bi bi-camera-reels-fill me-2"></i>Documentary
+                </button>
+                <button class="genre-btn" (click)="filterGenre('Horror')">
+                  <i class="bi bi-moon-stars-fill me-2"></i>Horror
+                </button>
+                <button class="genre-btn" (click)="filterGenre('Sci-Fi')">
+                  <i class="bi bi-rocket-takeoff-fill me-2"></i>Sci-Fi
+                </button>
+                <button class="genre-btn" (click)="filterGenre('Drama')">
+                  <i class="bi bi-mask me-2"></i>Drama
+                </button>
+              </div>
+            </div>
+
+            <!-- Year Filter -->
+            <div class="mb-4">
+              <h6 class="filter-section-title text-black">
+                <i class="bi bi-calendar-range me-2"></i>Release Year
+              </h6>
+              <div class="year-buttons">
+                <button class="year-btn" (click)="filterYear('2024')">2024</button>
+                <button class="year-btn" (click)="filterYear('2023')">2023</button>
+                <button class="year-btn" (click)="filterYear('2022')">2022</button>
+                <button class="year-btn" (click)="filterYear('2021')">2021</button>
+                <button class="year-btn" (click)="filterYear('2020')">2020</button>
+                <button class="year-btn" (click)="filterYear('2019')">2019</button>
+              </div>
+            </div>
+
+            <!-- Rating Filter -->
+            <div class="mb-4">
+              <h6 class="filter-section-title text-black">
+                <i class="bi bi-star-fill me-2"></i>Rating
+              </h6>
+              <div class="rating-filter">
+                <label class="rating-checkbox">
+                  <input type="checkbox" />
+                  <span><i class="bi bi-star-fill text-warning"></i> 9+ Excellent</span>
+                </label>
+                <label class="rating-checkbox">
+                  <input type="checkbox" />
+                  <span><i class="bi bi-star-fill text-warning"></i> 8+ Very Good</span>
+                </label>
+                <label class="rating-checkbox">
+                  <input type="checkbox" />
+                  <span><i class="bi bi-star-fill text-warning"></i> 7+ Good</span>
+                </label>
+                <label class="rating-checkbox">
+                  <input type="checkbox" />
+                  <span><i class="bi bi-star-fill text-warning"></i> 6+ Fair</span>
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Featured Banner -->
+        <div class="sidebar-featured-banner">
+          <img src="https://images.unsplash.com/photo-1594908900066-3f47337549d8?w=400&h=500&fit=crop" alt="Featured" />
+          <div class="featured-overlay">
+            <span class="badge bg-danger mb-2">FEATURED</span>
+            <h6 class="text-white fw-bold">Hidden Gems</h6>
+            <p class="text-white-50 small mb-3">Discover underrated masterpieces</p>
+            <button class="btn btn-sm btn-light">Explore Now</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Main Content Area -->
+    <div class="col-lg-9 col-md-8">
+      <!-- Sort and View Options -->
+      <div class="content-toolbar mb-4">
+        <div class="d-flex justify-content-between align-items-center flex-wrap gap-3">
+          <div class="view-options">
+            <button class="view-btn active">
+              <i class="bi bi-grid-3x3-gap"></i>
+            </button>
+            <button class="view-btn">
+              <i class="bi bi-list-ul"></i>
+            </button>
+          </div>
+          
+          <div class="sort-options">
+            <select class="form-select sort-select">
+              <option>Sort by: Relevance</option>
+              <option>Sort by: Latest</option>
+              <option>Sort by: Rating</option>
+              <option>Sort by: Title (A-Z)</option>
+              <option>Sort by: Release Date</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <!-- Movie Grid -->
+      <div class="movies-grid" id="cardGrid">
+        <div
+          class="movie-grid-item"
+          *ngFor="let movie of filterMovieType; let i = index"
+        >
+          <div class="enhanced-movie-card">
+            <div class="movie-poster-container">
+              <img
+                [src]="movie.logo || 'https://images.unsplash.com/photo-1626814026160-2237a95fc5a0?w=400&h=600&fit=crop'"
+                class="movie-poster-img"
+                alt="{{ movie.title }}"
+              />
+              
+              <!-- Hover Overlay -->
+              <div class="movie-hover-overlay">
+                <div class="overlay-actions">
+                  <button class="action-btn-circular play-btn">
+                    <i class="bi bi-play-fill"></i>
+                  </button>
+                  <div class="secondary-actions">
+                    <button class="action-btn-small" (click)="addToWatch(movie)" title="Add to Watchlist">
+                      <i class="bi bi-bookmark"></i>
+                    </button>
+                    <button class="action-btn-small" (click)="addToWatch(movie)" title="Like">
+                      <i class="bi bi-hand-thumbs-up"></i>
+                    </button>
+                    <button class="action-btn-small" [routerLink]="['/description', i]" title="More Info">
+                      <i class="bi bi-info-circle"></i>
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Rating Badge -->
+              <div class="rating-badge">
+                <i class="bi bi-star-fill"></i>
+                <span>{{ movie.rating || '8.5' }}</span>
+              </div>
+
+              <!-- Quality Badge -->
+              <div class="quality-badge">4K</div>
+            </div>
+
+            <div class="movie-card-info">
+              <a
+                [routerLink]="['/description', i]"
+                class="text-decoration-none movie-title-link"
+              >
+                <h6 class="movie-card-title text-black">{{ movie.title }}</h6>
+              </a>
+              <div class="movie-meta">
+                <span class="meta-item">{{ movie.year || '2024' }}</span>
+                <span class="meta-separator">•</span>
+                <span class="meta-item">{{ movie.duration || '2h 15m' }}</span>
+              </div>
+              <div class="movie-genres">
+                <span class="genre-tag">{{ movie.genre || 'Action' }}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- No Results State -->
+        <div class="col-12" *ngIf="!filterMovieType || filterMovieType.length === 0">
+          <div class="no-results-state">
+            <i class="bi bi-film display-1 text-muted mb-4"></i>
+            <h3 class="text-muted">No movies found</h3>
+            <p class="text-muted">Try adjusting your filters or search terms</p>
+            <button class="btn btn-danger mt-3" (click)="filterYear('')">
+              Clear All Filters
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Pagination -->
+      <div class="pagination-wrapper mt-5">
+        <nav aria-label="Movie pagination">
+          <ul class="pagination justify-content-center">
+            <li class="page-item disabled">
+              <a class="page-link" href="#" tabindex="-1">
+                <i class="bi bi-chevron-left"></i>
+              </a>
+            </li>
+            <li class="page-item active"><a class="page-link" href="#">1</a></li>
+            <li class="page-item"><a class="page-link" href="#">2</a></li>
+            <li class="page-item"><a class="page-link" href="#">3</a></li>
+            <li class="page-item"><a class="page-link" href="#">4</a></li>
+            <li class="page-item"><a class="page-link" href="#">5</a></li>
+            <li class="page-item">
+              <a class="page-link" href="#">
+                <i class="bi bi-chevron-right"></i>
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Recommendations Section -->
+<section class="container-fluid px-5 py-5 recommendations-section">
+  <div class="mb-4">
+    <h3 class="section-title ">
+      <i class="bi bi-magic me-2"></i>You Might Also Like
+    </h3>
+    <p class="text-muted">Based on your browsing history</p>
+  </div>
+  
+  <div class="recommendations-carousel">
+    <div class="row g-3">
+      <div class="col-lg-2 col-md-3 col-sm-4 col-6" *ngFor="let item of [1,2,3,4,5,6]">
+        <div class="recommendation-card">
+          <img src="https://images.unsplash.com/photo-1478720568477-152d9b164e26?w=300&h=450&fit=crop" alt="Recommendation" />
+          <div class="recommendation-overlay">
+            <button class="btn btn-sm btn-danger">
+              <i class="bi bi-play-fill"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Newsletter CTA -->
+<section class="container-fluid px-5 py-5 newsletter-cta-section">
+  <div class="newsletter-card">
+    <div class="row align-items-center">
+      <div class="col-md-7">
+        <h3 class="text-white fw-bold mb-3">Never Miss a New Release</h3>
+        <p class="text-white mb-0">Subscribe to get updates on the latest movies and exclusive offers</p>
+      </div>
+      <div class="col-md-5">
+        <div class="newsletter-form">
+          <input type="email" class="form-control" placeholder="Enter your email" />
+          <button class="btn btn-light">Subscribe</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

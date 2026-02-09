@@ -1,0 +1,517 @@
+<!-- ENHANCED MOVIE DETAILS PAGE WITH RED THEME -->
+
+<!-- Breadcrumb Navigation -->
+<div class="container-fluid px-5 py-3 breadcrumb-section">
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb-enhanced">
+      <li class="breadcrumb-item">
+        <a routerLink="/">
+          <i class="bi bi-house-door-fill me-2"></i>Home
+        </a>
+      </li>
+      <li class="breadcrumb-item">
+        <a routerLink="/discover">Discover</a>
+      </li>
+      <li class="breadcrumb-item active">{{ movie.title }}</li>
+    </ol>
+  </nav>
+</div>
+
+<!-- Hero Section with Movie Backdrop -->
+<section class="movie-hero-section">
+  <div class="hero-backdrop-wrapper">
+    <img 
+      [src]="movie.backdrop || movie.logo" 
+      alt="{{ movie.title }}"
+      class="hero-backdrop-img"
+    />
+    <div class="hero-backdrop-overlay"></div>
+  </div>
+  
+  <div class="container-fluid px-5">
+    <div class="row align-items-end hero-content-wrapper">
+      <div class="col-lg-3 col-md-4 col-sm-12">
+        <div class="movie-poster-wrapper">
+          <img
+            [src]="movie.logo"
+            alt="{{ movie.title }}"
+            class="movie-poster-main"
+          />
+          <div class="poster-actions">
+            <button class="btn-action-main">
+              <i class="bi bi-play-fill me-2"></i>Watch Now
+            </button>
+            <button class="btn-action-secondary" (click)="addToWatch(movie)" title="Add to Watchlist">
+              <i class="bi bi-plus-lg me-2"></i>My List
+            </button>
+          </div>
+        </div>
+      </div>
+      
+      <div class="col-lg-9 col-md-8 col-sm-12">
+        <div class="movie-title-section">
+          <div class="title-badge-wrapper mb-3">
+            <span class="badge bg-danger me-2">
+              <i class="bi bi-star-fill me-1"></i>{{ movie.rating || '8.5' }}
+            </span>
+            <span class="badge bg-dark">4K Ultra HD</span>
+            <span class="badge bg-dark">Dolby Atmos</span>
+          </div>
+          
+          <h1 class="movie-title-main">{{ movie.title }}</h1>
+          
+          <div class="movie-meta-info">
+            <span class="meta-badge">
+              <i class="bi bi-calendar3 me-2"></i>{{ movie.year || '2024' }}
+            </span>
+            <span class="meta-divider">•</span>
+            <span class="meta-badge">
+              <i class="bi bi-clock me-2"></i>{{ movie.duration || '2h 15m' }}
+            </span>
+            <span class="meta-divider">•</span>
+            <span class="meta-badge">
+              <i class="bi bi-film me-2"></i>{{ movie.genre || 'Action, Thriller' }}
+            </span>
+          </div>
+          
+          <p class="movie-tagline">{{ movie.tagline || 'An epic journey begins' }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Main Content Section -->
+<section class="container-fluid px-5 py-5">
+  <div class="row g-4">
+    <!-- Left Column - Movie Info -->
+    <div class="col-lg-8">
+      <!-- Synopsis Card -->
+      <div class="info-card mb-4">
+        <div class="info-card-header">
+          <h3><i class="bi bi-book me-3"></i>Synopsis</h3>
+        </div>
+        <div class="info-card-body">
+          <p class="movie-description">{{ movie.description }}</p>
+        </div>
+      </div>
+
+      <!-- Cast & Crew Section -->
+      <div class="info-card mb-4">
+        <div class="info-card-header">
+          <h3><i class="bi bi-people-fill me-3"></i>Cast & Crew</h3>
+        </div>
+        <div class="info-card-body">
+          <div class="cast-grid">
+            <!-- Director -->
+            <div class="crew-item">
+              <div class="crew-role">Director</div>
+              <div class="crew-name">{{ movie.director || 'Christopher Nolan' }}</div>
+            </div>
+            
+            <!-- Cast Members -->
+            <div class="cast-members-wrapper">
+              <h6 class="mb-3 text-black">Starring</h6>
+              <div class="cast-carousel">
+                <div class="cast-card" *ngFor="let actor of movie.cast?.split(',') || ['Actor 1', 'Actor 2', 'Actor 3', 'Actor 4']">
+                  <div class="cast-photo">
+                    <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=150&h=150&fit=crop" alt="Actor" />
+                  </div>
+                  <div class="cast-info">
+                    <div class="cast-name">{{ actor.trim() }}</div>
+                    <div class="cast-character">Character Name</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Movie Stats -->
+      <div class="info-card mb-4">
+        <div class="info-card-header">
+          <h3><i class="bi bi-bar-chart-fill me-3"></i>Statistics</h3>
+        </div>
+        <div class="info-card-body">
+          <div class="stats-grid">
+            <div class="stat-box">
+              <div class="stat-icon">
+                <i class="bi bi-eye-fill"></i>
+              </div>
+              <div class="stat-content">
+                <div class="stat-value">1.2M</div>
+                <div class="stat-label">Views</div>
+              </div>
+            </div>
+            
+            <div class="stat-box">
+              <div class="stat-icon">
+                <i class="bi bi-heart-fill"></i>
+              </div>
+              <div class="stat-content">
+                <div class="stat-value">98K</div>
+                <div class="stat-label">Likes</div>
+              </div>
+            </div>
+            
+            <div class="stat-box">
+              <div class="stat-icon">
+                <i class="bi bi-chat-fill"></i>
+              </div>
+              <div class="stat-content">
+                <div class="stat-value">2.5K</div>
+                <div class="stat-label">Reviews</div>
+              </div>
+            </div>
+            
+            <div class="stat-box">
+              <div class="stat-icon">
+                <i class="bi bi-bookmark-fill"></i>
+              </div>
+              <div class="stat-content">
+                <div class="stat-value">45K</div>
+                <div class="stat-label">Watchlist</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Trailer Section -->
+      <div class="info-card mb-4">
+        <div class="info-card-header">
+          <h3><i class="bi bi-play-circle-fill me-3"></i>Trailers & Clips</h3>
+        </div>
+        <div class="info-card-body">
+          <div class="trailer-grid">
+            <div class="trailer-item" *ngFor="let trailer of [1,2,3]">
+              <div class="trailer-thumbnail">
+                <img src="https://images.unsplash.com/photo-1536440136628-849c177e76a1?w=400&h=225&fit=crop" alt="Trailer" />
+                <div class="play-overlay">
+                  <i class="bi bi-play-circle-fill text-white"></i>
+                </div>
+              </div>
+              <div class="trailer-title text-black">Official Trailer {{ trailer }}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Reviews Section -->
+      <div class="info-card mb-4">
+        <div class="info-card-header">
+          <h3><i class="bi bi-star-fill me-3"></i>Reviews & Ratings</h3>
+          <button class="btn btn-sm btn-outline-danger">Write Review</button>
+        </div>
+        <div class="info-card-body">
+          <!-- Rating Overview -->
+          <div class="rating-overview mb-4">
+            <div class="rating-score-box">
+              <div class="rating-score">{{ movie.rating || '8.5' }}</div>
+              <div class="rating-stars">
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-half"></i>
+              </div>
+              <div class="rating-count">Based on 2,547 reviews</div>
+            </div>
+            
+            <div class="rating-breakdown">
+              <div class="rating-bar-item">
+                <span class="rating-label">5 stars</span>
+                <div class="rating-progress">
+                  <div class="rating-progress-fill" style="width: 75%"></div>
+                </div>
+                <span class="rating-percentage">75%</span>
+              </div>
+              <div class="rating-bar-item">
+                <span class="rating-label">4 stars</span>
+                <div class="rating-progress">
+                  <div class="rating-progress-fill" style="width: 15%"></div>
+                </div>
+                <span class="rating-percentage">15%</span>
+              </div>
+              <div class="rating-bar-item">
+                <span class="rating-label">3 stars</span>
+                <div class="rating-progress">
+                  <div class="rating-progress-fill" style="width: 7%"></div>
+                </div>
+                <span class="rating-percentage">7%</span>
+              </div>
+              <div class="rating-bar-item">
+                <span class="rating-label">2 stars</span>
+                <div class="rating-progress">
+                  <div class="rating-progress-fill" style="width: 2%"></div>
+                </div>
+                <span class="rating-percentage">2%</span>
+              </div>
+              <div class="rating-bar-item">
+                <span class="rating-label">1 star</span>
+                <div class="rating-progress">
+                  <div class="rating-progress-fill" style="width: 1%"></div>
+                </div>
+                <span class="rating-percentage">1%</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Write Review Form -->
+          <div class="write-review-section">
+            <h5 class="text-black mb-3">Be the first to review {{ movie.title }}</h5>
+            <p class="text-muted mb-3">Your email will not be published</p>
+            
+            <div class="review-rating-selector mb-4">
+              <label class="text-black mb-2">Your rating</label>
+              <div class="star-rating-input">
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star"></i>
+              </div>
+            </div>
+            
+            <form class="review-form">
+              <div class="mb-3">
+                <label class="form-label">Your review</label>
+                <textarea class="form-control review-textarea" rows="5" placeholder="Share your thoughts about this movie..."></textarea>
+              </div>
+              
+              <div class="row">
+                <div class="col-md-6 mb-3">
+                  <label class="form-label">Name</label>
+                  <input type="text" class="form-control" placeholder="Your name" />
+                </div>
+                <div class="col-md-6 mb-3">
+                  <label class="form-label">Email</label>
+                  <input type="email" class="form-control" placeholder="your.email@example.com" />
+                </div>
+              </div>
+              
+              <button type="submit" class="btn btn-danger btn-lg">
+                <i class="bi bi-send-fill me-2"></i>Submit Review
+              </button>
+            </form>
+          </div>
+
+          <!-- Existing Reviews -->
+          <div class="existing-reviews mt-5">
+            <h6 class="text-black mb-4">Recent Reviews</h6>
+            
+            <div class="review-item" *ngFor="let review of [1,2,3]">
+              <div class="review-header">
+                <div class="reviewer-avatar">
+                  <img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=60&h=60&fit=crop" alt="Reviewer" />
+                </div>
+                <div class="reviewer-info">
+                  <div class="reviewer-name">John Anderson</div>
+                  <div class="review-stars">
+                    <i class="bi bi-star-fill"></i>
+                    <i class="bi bi-star-fill"></i>
+                    <i class="bi bi-star-fill"></i>
+                    <i class="bi bi-star-fill"></i>
+                    <i class="bi bi-star-fill"></i>
+                  </div>
+                </div>
+                <div class="review-date">2 days ago</div>
+              </div>
+              <div class="review-content">
+                An absolute masterpiece! The cinematography, acting, and storyline are all top-notch. Highly recommend watching this in theaters for the full experience.
+              </div>
+              <div class="review-actions">
+                <button class="review-action-btn">
+                  <i class="bi bi-hand-thumbs-up"></i> Helpful (24)
+                </button>
+                <button class="review-action-btn">
+                  <i class="bi bi-flag"></i> Report
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right Sidebar -->
+    <div class="col-lg-4">
+      <!-- Movie Details Card -->
+      <div class="sidebar-card sticky-sidebar">
+        <div class="sidebar-card-header">
+          <h4><i class="bi bi-info-circle-fill me-2"></i>Movie Details</h4>
+        </div>
+        <div class="sidebar-card-body">
+          <div class="detail-row">
+            <span class="detail-label"><i class="bi bi-calendar3 me-2"></i>Release Date</span>
+            <span class="detail-value">{{ movie.releaseDate || 'March 15, 2024' }}</span>
+          </div>
+          
+          <div class="detail-row">
+            <span class="detail-label"><i class="bi bi-clock me-2"></i>Runtime</span>
+            <span class="detail-value">{{ movie.duration || '2h 15m' }}</span>
+          </div>
+          
+          <div class="detail-row">
+            <span class="detail-label"><i class="bi bi-film me-2"></i>Genre</span>
+            <span class="detail-value">{{ movie.genre || 'Action, Thriller' }}</span>
+          </div>
+          
+          <div class="detail-row">
+            <span class="detail-label"><i class="bi bi-translate me-2"></i>Language</span>
+            <span class="detail-value">{{ movie.language || 'English' }}</span>
+          </div>
+          
+          <div class="detail-row">
+            <span class="detail-label"><i class="bi bi-globe me-2"></i>Country</span>
+            <span class="detail-value">{{ movie.country || 'United States' }}</span>
+          </div>
+          
+          <div class="detail-row">
+            <span class="detail-label"><i class="bi bi-currency-dollar me-2"></i>Budget</span>
+            <span class="detail-value">{{ movie.budget || '$150M' }}</span>
+          </div>
+          
+          <div class="detail-row">
+            <span class="detail-label"><i class="bi bi-graph-up me-2"></i>Box Office</span>
+            <span class="detail-value">{{ movie.boxOffice || '$450M' }}</span>
+          </div>
+          
+          <div class="detail-row">
+            <span class="detail-label"><i class="bi bi-award me-2"></i>Awards</span>
+            <span class="detail-value">{{ movie.awards || '12 Wins, 34 Nominations' }}</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Where to Watch -->
+      <div class="sidebar-card mt-4">
+        <div class="sidebar-card-header">
+          <h4><i class="bi bi-play-btn-fill me-2"></i>Where to Watch</h4>
+        </div>
+        <div class="sidebar-card-body">
+          <div class="streaming-options">
+            <div class="streaming-option">
+              <img src="https://images.unsplash.com/photo-1574375927938-d5a98e8ffe85?w=50&h=50&fit=crop" alt="Netflix" class="streaming-logo" />
+              <div class="streaming-info">
+                <div class="streaming-name">Netflix</div>
+                <div class="streaming-price">Subscription</div>
+              </div>
+              <button class="btn btn-sm btn-danger">Watch</button>
+            </div>
+            
+            <div class="streaming-option">
+              <img src="https://images.unsplash.com/photo-1523474253046-8cd2748b5fd2?w=50&h=50&fit=crop" alt="Prime" class="streaming-logo" />
+              <div class="streaming-info">
+                <div class="streaming-name">Amazon Prime</div>
+                <div class="streaming-price">$4.99</div>
+              </div>
+              <button class="btn btn-sm btn-outline-danger">Rent</button>
+            </div>
+            
+            <div class="streaming-option">
+              <img src="https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?w=50&h=50&fit=crop" alt="HBO" class="streaming-logo" />
+              <div class="streaming-info">
+                <div class="streaming-name">HBO Max</div>
+                <div class="streaming-price">Subscription</div>
+              </div>
+              <button class="btn btn-sm btn-danger">Watch</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tags -->
+      <div class="sidebar-card mt-4">
+        <div class="sidebar-card-header">
+          <h4><i class="bi bi-tags-fill me-2"></i>Tags</h4>
+        </div>
+        <div class="sidebar-card-body">
+          <div class="tags-wrapper">
+            <span class="tag-chip" *ngFor="let tag of movie.genre?.split(',') || ['Action', 'Thriller', 'Drama']">
+              {{ tag.trim() }}
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Share -->
+      <div class="sidebar-card mt-4">
+        <div class="sidebar-card-header">
+          <h4><i class="bi bi-share-fill me-2"></i>Share</h4>
+        </div>
+        <div class="sidebar-card-body">
+          <div class="share-buttons">
+            <button class="share-btn facebook">
+              <i class="bi bi-facebook"></i>
+            </button>
+            <button class="share-btn twitter">
+              <i class="bi bi-twitter"></i>
+            </button>
+            <button class="share-btn whatsapp">
+              <i class="bi bi-whatsapp"></i>
+            </button>
+            <button class="share-btn link">
+              <i class="bi bi-link-45deg"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Similar Movies Section -->
+<section class="container-fluid px-5 py-5 similar-movies-section">
+  <div class="section-header mb-4">
+    <h2 class="section-title text-black">
+      <i class="bi bi-collection-play me-3"></i>Similar Movies
+    </h2>
+    <a routerLink="/discover" class="view-all-link">
+      View All <i class="bi bi-arrow-right ms-2"></i>
+    </a>
+  </div>
+  
+  <div class="similar-movies-grid">
+    <div class="similar-movie-card" *ngFor="let item of [1,2,3,4,5,6]">
+      <div class="similar-poster">
+        <img src="https://images.unsplash.com/photo-1626814026160-2237a95fc5a0?w=300&h=450&fit=crop" alt="Similar Movie" />
+        <div class="similar-overlay">
+          <button class="play-btn-small">
+            <i class="bi bi-play-fill"></i>
+          </button>
+        </div>
+        <div class="similar-rating">
+          <i class="bi bi-star-fill"></i> 8.5
+        </div>
+      </div>
+      <div class="similar-info">
+        <h6 class="text-black">Similar Movie Title</h6>
+        <p class="text-black">2024 • 2h 10m</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- You May Also Like -->
+<section class="container-fluid px-5 py-5 recommendations-section">
+  <div class="section-header mb-4">
+    <h2 class="section-title text-black">
+      <i class="bi bi-lightning-charge-fill me-3"></i>Recommended For You
+    </h2>
+  </div>
+  
+  <div class="recommendations-grid">
+    <div class="recommendation-item" *ngFor="let item of [1,2,3,4,5,6,7,8]">
+      <img src="https://images.unsplash.com/photo-1478720568477-152d9b164e26?w=250&h=375&fit=crop" alt="Recommendation" />
+      <div class="recommendation-info">
+        <h6>Movie Title</h6>
+        <div class="recommendation-meta">
+          <span><i class="bi bi-star-fill"></i> 8.7</span>
+          <span>2024</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

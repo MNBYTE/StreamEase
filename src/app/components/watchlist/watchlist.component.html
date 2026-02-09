@@ -1,0 +1,437 @@
+<!-- ENHANCED WATCHLIST PAGE WITH RED THEME -->
+
+<!-- Hero Header Section -->
+<section class="watchlist-hero-section">
+  <div class="container-fluid px-5">
+    <div class="row align-items-center">
+      <div class="col-lg-8">
+        <div class="watchlist-hero-content">
+          <div class="hero-badge-wrapper mb-3">
+            <span class="badge bg-danger">
+              <i class="bi bi-bookmark-fill me-2"></i>My Watchlist
+            </span>
+          </div>
+          <h1 class="watchlist-hero-title">Your Personal Collection</h1>
+          <p class="watchlist-hero-subtitle">
+            {{ theMovies?.length || 0 }} items saved • Never miss what you want to watch
+          </p>
+        </div>
+      </div>
+      <div class="col-lg-4">
+        <div class="watchlist-hero-image">
+          <img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=800&h=450&fit=crop" alt="Watchlist Hero" class="img-fluid rounded shadow" />
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Filter and Control Bar -->
+<section class="watchlist-controls-section">
+  <div class="container-fluid px-5">
+    <div class="controls-wrapper">
+      <!-- Content Type Filters -->
+      <div class="content-type-filters">
+        <button class="content-type-btn active">
+          <i class="bi bi-tv-fill me-2"></i>
+          TV Shows
+        </button>
+        <button class="content-type-btn">
+          <i class="bi bi-film me-2"></i>
+          Movies
+        </button>
+        <button class="content-type-btn">
+          <i class="bi bi-collection-play me-2"></i>
+          All
+        </button>
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="action-buttons">
+        <button class="action-btn likes-btn">
+          <i class="bi bi-hand-thumbs-up-fill me-2"></i>
+          Likes
+        </button>
+        <button class="action-btn sort-btn">
+          <i class="bi bi-sort-down me-2"></i>
+          Sort
+        </button>
+        <button class="action-btn delete-all-btn" (click)="emptyWatchlater()">
+          <i class="bi bi-trash-fill me-2"></i>
+          Delete All
+        </button>
+      </div>
+    </div>
+
+    <!-- Advanced Filters -->
+    <div class="advanced-filters">
+      <div class="filter-group">
+        <label class="filter-label">
+          <i class="bi bi-funnel-fill me-2"></i>Filter by:
+        </label>
+        <div class="filter-chips">
+          <button class="filter-chip active">All</button>
+          <button class="filter-chip">Unwatched</button>
+          <button class="filter-chip">Watched</button>
+          <button class="filter-chip">Added Today</button>
+          <button class="filter-chip">This Week</button>
+        </div>
+      </div>
+
+      <div class="view-toggle">
+        <button class="view-btn active" title="Grid View">
+          <i class="bi bi-grid-3x3-gap"></i>
+        </button>
+        <button class="view-btn" title="List View">
+          <i class="bi bi-list-ul"></i>
+        </button>
+        <button class="view-btn" title="Compact View">
+          <i class="bi bi-grid-fill"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Quick Actions Bar -->
+<section class="quick-actions-bar">
+  <div class="container-fluid px-5">
+    <div class="quick-actions-wrapper">
+      <button class="quick-action-item">
+        <i class="bi bi-play-circle-fill"></i>
+        <span>Continue Watching</span>
+      </button>
+      <button class="quick-action-item">
+        <i class="bi bi-star-fill"></i>
+        <span>Highly Rated</span>
+      </button>
+      <button class="quick-action-item">
+        <i class="bi bi-calendar-event"></i>
+        <span>Recently Added</span>
+      </button>
+      <button class="quick-action-item">
+        <i class="bi bi-download"></i>
+        <span>Export List</span>
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- Main Watchlist Content -->
+<section class="watchlist-content-section">
+  <div class="container-fluid px-5">
+    <!-- Empty State -->
+    <div class="empty-watchlist-state" *ngIf="!theMovies || theMovies.length === 0">
+      <div class="empty-state-icon">
+        <i class="bi bi-bookmark-x"></i>
+      </div>
+      <h3>Your Watchlist is Empty</h3>
+      <p>Start adding movies and shows you want to watch later</p>
+      <a routerLink="/discover" class="btn btn-danger btn-lg mt-3">
+        <i class="bi bi-compass me-2"></i>Discover Content
+      </a>
+    </div>
+
+    <!-- Watchlist Grid -->
+    <div class="watchlist-grid" *ngIf="theMovies && theMovies.length > 0">
+      <div class="watchlist-item" *ngFor="let movie of theMovies; let i = index">
+        <!-- Enhanced Card Design -->
+        <div class="watchlist-card">
+          <!-- Movie Poster -->
+          <div class="watchlist-poster-wrapper">
+            <img
+              [src]="movie.logo"
+              alt="{{ movie.title }}"
+              class="watchlist-poster"
+            />
+            <div class="poster-overlay">
+              <button class="play-overlay-btn" [routerLink]="['/description', i]">
+                <i class="bi bi-play-fill"></i>
+              </button>
+            </div>
+            
+            <!-- Status Badge -->
+            <div class="status-badge watched" *ngIf="movie.watched">
+              <i class="bi bi-check-circle-fill"></i> Watched
+            </div>
+            <div class="status-badge unwatched" *ngIf="!movie.watched">
+              <i class="bi bi-clock-fill"></i> Unwatched
+            </div>
+
+            <!-- Rating Badge -->
+            <div class="rating-badge-watchlist">
+              <i class="bi bi-star-fill"></i>
+              {{ movie.rating || '8.5' }}
+            </div>
+          </div>
+
+          <!-- Movie Info -->
+          <div class="watchlist-card-body">
+            <h5 class="watchlist-title">{{ movie.title }}</h5>
+            
+            <div class="watchlist-meta">
+              <span><i class="bi bi-calendar3 me-1"></i>{{ movie.year || '2024' }}</span>
+              <span class="meta-dot">•</span>
+              <span><i class="bi bi-clock me-1"></i>{{ movie.duration || '2h 15m' }}</span>
+            </div>
+
+            <p class="watchlist-description">
+              {{ movie.description | slice:0:100 }}{{ movie.description?.length > 100 ? '...' : '' }}
+            </p>
+
+            <div class="watchlist-genres">
+              <span class="genre-badge" *ngFor="let genre of movie.genre?.split(',').slice(0, 2)">
+                {{ genre.trim() }}
+              </span>
+            </div>
+
+            <!-- Card Actions -->
+            <div class="watchlist-card-actions">
+              <button class="card-action-btn primary" [routerLink]="['/description', i]">
+                <i class="bi bi-play-circle-fill me-2"></i>Watch Now
+              </button>
+              <button class="card-action-btn secondary">
+                <i class="bi bi-info-circle"></i>
+              </button>
+              <button class="card-action-btn secondary">
+                <i class="bi bi-share"></i>
+              </button>
+              <button class="card-action-btn danger" (click)="removeMovie(movie)">
+                <i class="bi bi-trash-fill"></i>
+              </button>
+            </div>
+          </div>
+
+          <!-- Added Date -->
+          <div class="card-footer-info">
+            <span class="added-date">
+              <i class="bi bi-bookmark-plus me-1"></i>Added {{ movie.addedDate || '2 days ago' }}
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Alternative List View -->
+    <div class="watchlist-list-view d-none">
+      <div class="list-item" *ngFor="let movie of theMovies; let i = index">
+        <div class="list-item-poster">
+          <img [src]="movie.logo" alt="{{ movie.title }}" />
+          <div class="list-play-overlay">
+            <i class="bi bi-play-fill"></i>
+          </div>
+        </div>
+        
+        <div class="list-item-content">
+          <div class="list-item-header">
+            <h4>{{ movie.title }}</h4>
+            <div class="list-item-rating">
+              <i class="bi bi-star-fill"></i> {{ movie.rating || '8.5' }}
+            </div>
+          </div>
+          
+          <div class="list-item-meta">
+            <span>{{ movie.year }}</span>
+            <span>•</span>
+            <span>{{ movie.duration || '2h 15m' }}</span>
+            <span>•</span>
+            <span>{{ movie.genre }}</span>
+          </div>
+          
+          <p class="list-item-description">{{ movie.description }}</p>
+        </div>
+        
+        <div class="list-item-actions">
+          <button class="list-action-btn watch" [routerLink]="['/description', i]">
+            <i class="bi bi-play-circle-fill"></i>
+            Watch
+          </button>
+          <button class="list-action-btn delete" (click)="removeMovie(movie)">
+            <i class="bi bi-trash-fill"></i>
+            Remove
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- Recommendations Based on Watchlist -->
+<section class="watchlist-recommendations-section">
+  <div class="container-fluid px-5">
+    <div class="section-header">
+      <h2>
+        <i class="bi bi-magic me-3"></i>Recommended For You
+      </h2>
+      <p class="section-subtitle">Based on your watchlist preferences</p>
+    </div>
+    
+    <div class="recommendations-carousel">
+      <div class="recommendation-card-small" *ngFor="let item of [1,2,3,4,5,6,7,8]">
+        <div class="recommendation-poster">
+          <img src="https://images.unsplash.com/photo-1478720568477-152d9b164e26?w=250&h=375&fit=crop" alt="Recommendation" />
+          <div class="recommendation-overlay">
+            <button class="add-to-list-btn">
+              <i class="bi bi-plus-lg"></i>
+            </button>
+          </div>
+          <div class="match-score">
+            <i class="bi bi-lightning-charge-fill"></i> 95% Match
+          </div>
+        </div>
+        <div class="recommendation-info">
+          <h6>Recommended Title</h6>
+          <span>2024 • 2h 10m</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Watchlist Collections -->
+<section class="watchlist-collections-section">
+  <div class="container-fluid px-5">
+    <div class="section-header">
+      <h2>
+        <i class="bi bi-folder-fill me-3"></i>My Collections
+      </h2>
+      <button class="btn btn-outline-danger">
+        <i class="bi bi-plus-lg me-2"></i>Create Collection
+      </button>
+    </div>
+    
+    <div class="collections-grid">
+      <div class="collection-card">
+        <div class="collection-preview">
+          <img src="https://images.unsplash.com/photo-1626814026160-2237a95fc5a0?w=300&h=450&fit=crop" alt="Collection" />
+          <div class="collection-count">12 items</div>
+        </div>
+        <div class="collection-info">
+          <h5>Action & Adventure</h5>
+          <p>Your favorite action-packed movies</p>
+        </div>
+      </div>
+
+      <div class="collection-card">
+        <div class="collection-preview">
+          <img src="https://images.unsplash.com/photo-1594908900066-3f47337549d8?w=300&h=450&fit=crop" alt="Collection" />
+          <div class="collection-count">8 items</div>
+        </div>
+        <div class="collection-info">
+          <h5>Horror Classics</h5>
+          <p>Spine-chilling favorites</p>
+        </div>
+      </div>
+
+      <div class="collection-card">
+        <div class="collection-preview">
+          <img src="https://images.unsplash.com/photo-1518709594023-6eab9bab7b23?w=300&h=450&fit=crop" alt="Collection" />
+          <div class="collection-count">15 items</div>
+        </div>
+        <div class="collection-info">
+          <h5>Comedy Gold</h5>
+          <p>Laugh-out-loud moments</p>
+        </div>
+      </div>
+
+      <div class="collection-card create-new">
+        <div class="create-icon">
+          <i class="bi bi-plus-circle"></i>
+        </div>
+        <h5>Create New Collection</h5>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Watchlist Analytics -->
+<section class="watchlist-analytics-section">
+  <div class="container-fluid px-5">
+    <div class="section-header">
+      <h2>
+        <i class="bi bi-graph-up me-3"></i>Your Watchlist Insights
+      </h2>
+    </div>
+    
+    <div class="analytics-grid">
+      <div class="analytics-card">
+        <div class="analytics-icon">
+          <i class="bi bi-pie-chart-fill"></i>
+        </div>
+        <div class="analytics-content">
+          <h3>Most Watched Genre</h3>
+          <p class="analytics-value">Action & Thriller</p>
+          <div class="analytics-bar">
+            <div class="analytics-progress" style="width: 75%"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="analytics-card">
+        <div class="analytics-icon">
+          <i class="bi bi-clock-history"></i>
+        </div>
+        <div class="analytics-content">
+          <h3>Total Watch Time</h3>
+          <p class="analytics-value">156 hours</p>
+          <small class="text-muted">Across 48 titles</small>
+        </div>
+      </div>
+
+      <div class="analytics-card">
+        <div class="analytics-icon">
+          <i class="bi bi-calendar-check"></i>
+        </div>
+        <div class="analytics-content">
+          <h3>This Month</h3>
+          <p class="analytics-value">12 titles added</p>
+          <small class="text-success"><i class="bi bi-arrow-up"></i> 25% increase</small>
+        </div>
+      </div>
+
+      <div class="analytics-card">
+        <div class="analytics-icon">
+          <i class="bi bi-award"></i>
+        </div>
+        <div class="analytics-content">
+          <h3>Average Rating</h3>
+          <p class="analytics-value">8.7 <i class="bi bi-star-fill text-warning"></i></p>
+          <small class="text-muted">You have great taste!</small>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Share Watchlist -->
+<section class="share-watchlist-section">
+  <div class="container-fluid px-5">
+    <div class="share-card">
+      <div class="share-content">
+        <div class="share-icon">
+          <i class="bi bi-share-fill"></i>
+        </div>
+        <div>
+          <h3>Share Your Watchlist</h3>
+          <p>Let friends see what you're planning to watch</p>
+        </div>
+      </div>
+      <div class="share-actions">
+        <button class="share-social-btn facebook">
+          <i class="bi bi-facebook"></i>
+        </button>
+        <button class="share-social-btn twitter">
+          <i class="bi bi-twitter"></i>
+        </button>
+        <button class="share-social-btn whatsapp">
+          <i class="bi bi-whatsapp"></i>
+        </button>
+        <button class="share-social-btn link">
+          <i class="bi bi-link-45deg"></i> Copy Link
+        </button>
+      </div>
+    </div>
+  </div>
+</section>

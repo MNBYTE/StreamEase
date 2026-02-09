@@ -1,0 +1,660 @@
+/* ==========================================
+   ENHANCED STREAMING PLATFORM CSS
+   Modern, Spectacular Styling
+   ========================================== */
+
+/* ==========================================
+   HERO CAROUSEL STYLES
+   ========================================== */
+.hero-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.95) 0%,
+    rgba(0, 0, 0, 0.4) 50%,
+    rgba(0, 0, 0, 0.6) 100%
+  );
+  z-index: 1;
+}
+
+.hero-image {
+  filter: brightness(0.7);
+  transition: transform 0.5s ease;
+}
+
+.carousel-item:hover .hero-image {
+  transform: scale(1.05);
+}
+
+.hero-caption {
+  z-index: 2;
+  bottom: 10% !important;
+}
+
+.hero-title {
+  text-shadow: 2px 2px 20px rgba(0, 0, 0, 0.8);
+  letter-spacing: 2px;
+  animation: fadeInUp 1s ease;
+}
+
+.hero-badge {
+  animation: fadeInDown 1s ease;
+}
+
+.hero-btn-play {
+  background: red;
+  border: none;
+  transition: all 0.3s ease;
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+
+.hero-btn-play:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 30px rgba(102, 126, 234, 0.5);
+  background: linear-gradient(135deg, red 0%, blue 100%);
+}
+
+.hero-btn-watch {
+  border: 2px solid white;
+  transition: all 0.3s ease;
+  font-weight: 600;
+  letter-spacing: 1px;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+}
+
+.hero-btn-watch:hover {
+  background: white;
+  color: #000;
+  transform: translateY(-3px);
+  box-shadow: 0 10px 30px rgba(255, 255, 255, 0.3);
+}
+
+.hero-info {
+  font-size: 1.1rem;
+  text-shadow: 1px 1px 10px rgba(0, 0, 0, 0.8);
+}
+
+.hero-description {
+  text-shadow: 1px 1px 10px rgba(0, 0, 0, 0.8);
+  line-height: 1.6;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ==========================================
+   PROVIDER CARDS STYLES
+   ========================================== */
+.provider-card {
+  border-radius: 20px;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  overflow: hidden;
+  background: white;
+}
+
+.provider-card:hover {
+  transform: translateY(-15px) scale(1.02);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3) !important;
+}
+
+.provider-logo-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.provider-logo {
+  transition: transform 0.3s ease;
+  object-fit: cover;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.provider-card:hover .provider-logo {
+  transform: scale(1.1) rotate(5deg);
+}
+
+.price-item {
+  transition: all 0.3s ease;
+  border-left: 4px solid transparent;
+}
+
+.price-item:hover {
+  border-left-color: red;
+  background: linear-gradient(to right, #f8f9fa, #ffffff) !important;
+  transform: translateX(5px);
+}
+
+.provider-card .btn {
+  transition: all 0.3s ease;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+.provider-card .btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+}
+
+/* ==========================================
+   MOVIE CARDS STYLES
+   ========================================== */
+.movie-card {
+  position: relative;
+  transition: all 0.4s ease;
+  border-radius: 15px;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+}
+
+.movie-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5);
+}
+
+.movie-poster-wrapper {
+  position: relative;
+  overflow: hidden;
+  border-radius: 15px;
+}
+
+.movie-poster {
+  width: 100%;
+  height: 400px;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.movie-card:hover .movie-poster {
+  transform: scale(1.1);
+}
+
+.movie-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.95), transparent);
+  padding: 20px;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.movie-card:hover .movie-overlay {
+  opacity: 1;
+}
+
+.movie-overlay .btn {
+  width: 45px;
+  height: 45px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.movie-overlay .btn:hover {
+  transform: scale(1.2);
+}
+
+.movie-info {
+  background: rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(10px);
+}
+
+/* ==========================================
+   GENRE CARDS STYLES
+   ========================================== */
+.genre-card {
+  position: relative;
+  height: 250px;
+  border-radius: 15px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: all 0.4s ease;
+}
+
+.genre-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.genre-card:hover img {
+  transform: scale(1.2);
+}
+
+.genre-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, red 0%, blue 100%);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.4s ease;
+}
+
+.genre-card:hover .genre-overlay {
+  background: linear-gradient(135deg, rgba(102, 126, 234, 0.95), rgba(118, 75, 162, 0.95));
+}
+
+.genre-overlay h3 {
+  font-size: 2rem;
+  letter-spacing: 3px;
+  text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
+  transition: transform 0.3s ease;
+}
+
+.genre-card:hover .genre-overlay h3 {
+  transform: scale(1.1);
+}
+
+/* ==========================================
+   TOP RATED CARDS STYLES
+   ========================================== */
+.top-rated-card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 15px;
+  cursor: pointer;
+  transition: all 0.4s ease;
+}
+
+.top-rated-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+}
+
+.top-rated-card img {
+  width: 100%;
+  height: 350px;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.top-rated-card:hover img {
+  transform: scale(1.1);
+}
+
+.rank-badge {
+  position: absolute;
+  top: -10px;
+  left: -10px;
+  width: 60px;
+  height: 60px;
+  background: linear-gradient(135deg, #ffd700, #ffed4e);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #000;
+  box-shadow: 0 5px 15px rgba(255, 215, 0, 0.5);
+  z-index: 2;
+  border: 3px solid white;
+}
+
+.rating-overlay {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(10px);
+  padding: 8px 15px;
+  border-radius: 20px;
+  font-weight: bold;
+  color: white;
+  font-size: 1.1rem;
+}
+
+/* ==========================================
+   CONTINUE WATCHING STYLES
+   ========================================== */
+.continue-watching-card {
+  position: relative;
+  border-radius: 15px;
+  overflow: hidden;
+  transition: all 0.4s ease;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+}
+
+.continue-watching-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5);
+}
+
+.continue-watching-card img {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.continue-watching-card:hover img {
+  transform: scale(1.05);
+}
+
+.progress-bar-wrapper {
+  position: absolute;
+  bottom: 80px;
+  left: 0;
+  right: 0;
+  padding: 0 15px;
+}
+
+.continue-info {
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(10px);
+}
+
+/* ==========================================
+   PREMIUM BANNER STYLES
+   ========================================== */
+.premium-content-badge {
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+.premium-banner-img {
+  border-radius: 20px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+  animation: float 6s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+/* ==========================================
+   CAROUSEL CONTROLS
+   ========================================== */
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+  width: 60px;
+  height: 60px;
+  background-color: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(10px);
+  border-radius: 50%;
+  transition: all 0.3s ease;
+}
+
+.carousel-control-prev:hover .carousel-control-prev-icon,
+.carousel-control-next:hover .carousel-control-next-icon {
+  background-color: rgba(102, 126, 234, 0.9);
+  transform: scale(1.2);
+}
+
+.carousel-indicators button {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+}
+
+.carousel-indicators button.active {
+  width: 40px;
+  border-radius: 6px;
+  background: linear-gradient(135deg, #667eea, #764ba2);
+}
+
+/* ==========================================
+   UTILITY CLASSES
+   ========================================== */
+.purple {
+  color: #764ba2;
+}
+
+.black {
+  color: #000;
+}
+
+.ls-sm {
+  letter-spacing: 1px;
+}
+
+/* ==========================================
+   RESPONSIVE STYLES
+   ========================================== */
+@media (max-width: 768px) {
+  .hero-title {
+    font-size: 2.5rem !important;
+  }
+
+  .hero-caption {
+    bottom: 5% !important;
+  }
+
+  .hero-btn-play,
+  .hero-btn-watch {
+    padding: 0.5rem 2rem !important;
+    font-size: 0.9rem;
+  }
+
+  .hero-description {
+    font-size: 0.9rem !important;
+  }
+
+  .display-2 {
+    font-size: 2rem;
+  }
+
+  .display-3 {
+    font-size: 1.8rem;
+  }
+
+  .display-4 {
+    font-size: 1.5rem;
+  }
+
+  .display-5 {
+    font-size: 1.3rem;
+  }
+
+  .genre-card {
+    height: 200px;
+  }
+
+  .movie-poster {
+    height: 300px;
+  }
+
+  .top-rated-card img {
+    height: 280px;
+  }
+}
+
+@media (max-width: 576px) {
+  .hero-title {
+    font-size: 2rem !important;
+  }
+
+  .provider-card {
+    margin-bottom: 20px;
+  }
+
+  .carousel-control-prev-icon,
+  .carousel-control-next-icon {
+    width: 40px;
+    height: 40px;
+  }
+}
+
+/* ==========================================
+   SCROLL ANIMATIONS
+   ========================================== */
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* ==========================================
+   LOADING ANIMATIONS
+   ========================================== */
+.loading-shimmer {
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0.05) 25%,
+    rgba(255, 255, 255, 0.1) 50%,
+    rgba(255, 255, 255, 0.05) 75%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+/* ==========================================
+   GLASS MORPHISM EFFECTS
+   ========================================== */
+.glass-effect {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+}
+
+/* ==========================================
+   CUSTOM SCROLLBAR
+   ========================================== */
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: #1a1a2e;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  border-radius: 6px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(135deg, #764ba2, #667eea);
+}
+
+/* ==========================================
+   BUTTON HOVER EFFECTS
+   ========================================== */
+.btn {
+  position: relative;
+  overflow: hidden;
+}
+
+.btn::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  transform: translate(-50%, -50%);
+  transition: width 0.6s, height 0.6s;
+}
+
+.btn:hover::before {
+  width: 300px;
+  height: 300px;
+}
+
+/* ==========================================
+   TEXT GRADIENT EFFECTS
+   ========================================== */
+.gradient-text {
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ==========================================
+   BADGE STYLES
+   ========================================== */
+.badge {
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  padding: 0.5rem 1rem;
+}
+
+/* ==========================================
+   SECTION DIVIDERS
+   ========================================== */
+.section-divider {
+  height: 2px;
+  background: linear-gradient(to right, transparent, #667eea, #764ba2, transparent);
+  margin: 3rem 0;
+}

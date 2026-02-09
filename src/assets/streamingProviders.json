@@ -1,0 +1,107 @@
+[
+  {
+    "logo": "img/HBO_Max_Logo.svg",
+    "name": "HBO Max",
+    "subscriptions": [
+      {
+        "type": "daily",
+        "price": 3.5,
+        "duration": "1 day" 
+      },
+      {
+        "type": "weekly",
+        "price": 15.99,
+        "duration": "7 days" 
+      },
+      {
+          "type": "monthly",
+          "price": 64.00,
+          "duration": "30 days" 
+      }
+    ]
+  },
+  {
+    "logo": "img/Amazon_Prime_logo.svg",
+    "name": "Amazon Prime",
+    "subscriptions": [
+      {
+        "type": "weekly",
+        "price": 3.99,
+        "duration": "1 day" 
+      },
+      {
+        "type": "weekly",
+        "price": 15.00,
+        "duration": "7 days" 
+      },
+      {
+        "type": "monthly",
+        "price": 60.00,
+        "duration": "30 days" 
+      }
+    ]
+  },
+  {
+    "logo": "img/Hulu_Logo.svg",
+    "name": "Hulu",
+    "subscriptions": [
+      {
+        "type": "daily",
+        "price": 3.00,
+        "duration": "1 day" 
+      },
+      {
+        "type": "weekly",
+        "price": 15.00,
+        "duration": "7 days" 
+      },
+      {
+        "type": "monthly",
+        "price": 60.00,
+        "duration": "30 days" 
+      }
+    ]
+  },
+  {
+    "logo": "img/YouTube_Premium_logo.svg",
+    "name": "Youtube",
+    "subscriptions": [
+      {
+        "type": "daily",
+        "price": 4.10,
+        "duration": "1 day" 
+      },
+      {
+        "type": "weekly",
+        "price": 20.50,
+        "duration": "7 days" 
+      },
+      {
+        "type": "monthly",
+        "price": 80.00,
+        "duration": "30 days" 
+      }
+    ]
+  },
+  {
+    "logo": "img/Disney+_logo.svg",
+    "name": "Disney",
+    "subscriptions": [
+      {
+        "type": "daily",
+        "price": 3.59,
+        "duration": "1 day" 
+      },
+      {
+        "type": "weekly",
+        "price": 18.50,
+        "duration": "7 days" 
+      },
+      {
+        "type": "monthly",
+        "price": 72.00,
+        "duration": "30 days" 
+      }
+    ]
+  }
+]
