@@ -155,9 +155,9 @@
 .content-type-btn {
   padding: 12px 24px;
   background: rgba(255, 255, 255, 0.05);
-  border: 2px solid rgba(255, 255, 255, 0.1);
+  border: 2px solid black;
   border-radius: 12px;
-  color: var(--text-secondary);
+  color: black;
   font-weight: 600;
   transition: all 0.3s ease;
   cursor: pointer;
@@ -166,7 +166,7 @@
 }
 
 .content-type-btn:hover {
-  background: rgba(229, 9, 20, 0.1);
+  background: red;
   border-color: var(--primary-red);
   color: white;
 }
@@ -174,7 +174,7 @@
 .content-type-btn.active {
   background: var(--primary-red);
   border-color: var(--primary-red);
-  color: white;
+  color: black;
   box-shadow: 0 5px 15px rgba(229, 9, 20, 0.4);
 }
 
@@ -186,10 +186,10 @@
 
 .action-btn {
   padding: 12px 20px;
-  border: 2px solid rgba(255, 255, 255, 0.2);
+  border: 2px solid black;
   border-radius: 12px;
   background: transparent;
-  color: white;
+  color: black;
   font-weight: 600;
   transition: all 0.3s ease;
   cursor: pointer;
@@ -198,19 +198,20 @@
 }
 
 .action-btn:hover {
-  background: rgba(255, 255, 255, 0.1);
+  background: red;
   border-color: rgba(255, 255, 255, 0.4);
   transform: translateY(-2px);
 }
 
 .delete-all-btn {
-  border-color: var(--primary-red);
-  color: var(--primary-red);
+  border-color: black;
+  color: red;
 }
 
 .delete-all-btn:hover {
-  background: var(--primary-red);
+  background: red;
   color: white;
+  border-color: 2px solid black;
 }
 
 /* Advanced Filters */
@@ -230,7 +231,7 @@
 }
 
 .filter-label {
-  color: white;
+  color: black;
   font-weight: 600;
   display: flex;
   align-items: center;
@@ -247,7 +248,7 @@
   background: rgba(255, 255, 255, 0.05);
   border: 2px solid transparent;
   border-radius: 20px;
-  color: var(--text-secondary);
+  color: black;
   font-weight: 600;
   font-size: 0.9rem;
   transition: all 0.3s ease;
@@ -256,7 +257,7 @@
 
 .filter-chip:hover {
   background: rgba(229, 9, 20, 0.1);
-  color: white;
+  color: black;
 }
 
 .filter-chip.active {
@@ -280,7 +281,7 @@
   background: transparent;
   border: none;
   border-radius: 8px;
-  color: var(--text-secondary);
+  color: black;
   font-size: 1.2rem;
   cursor: pointer;
   transition: all 0.3s ease;
@@ -290,13 +291,13 @@
 }
 
 .view-btn:hover {
-  color: white;
-  background: rgba(255, 255, 255, 0.1);
+  color: red;
+  background: black;
 }
 
 .view-btn.active {
-  background: var(--primary-red);
-  color: white;
+  background: black;
+  color: red;
 }
 
 /* ==========================================
@@ -333,7 +334,7 @@
   background: rgba(229, 9, 20, 0.1);
   border: 2px solid rgba(229, 9, 20, 0.3);
   border-radius: 12px;
-  color: white;
+  color: black;
   font-weight: 600;
   transition: all 0.3s ease;
   cursor: pointer;
@@ -344,8 +345,8 @@
 }
 
 .quick-action-item:hover {
-  background: var(--primary-red);
-  border-color: var(--primary-red);
+  background: red;
+  border-color: red;
   transform: translateY(-3px);
   box-shadow: 0 8px 20px rgba(229, 9, 20, 0.4);
 }
@@ -387,7 +388,7 @@
 }
 
 .empty-watchlist-state h3 {
-  color: white;
+  color: black;
   font-size: 2rem;
   font-weight: 700;
   margin-bottom: 15px;
@@ -601,7 +602,7 @@
 }
 
 .card-action-btn.primary {
-  background: var(--primary-red);
+  background: red;
   color: white;
   flex: 2;
 }
@@ -631,7 +632,7 @@
 }
 
 .card-action-btn.danger:hover {
-  background: var(--primary-red);
+  background: red;
   color: white;
 }
 
@@ -1009,6 +1010,7 @@
   padding: 50px 0;
   background: var(--dark-bg-lighter);
   border-top: 1px solid rgba(255, 255, 255, 0.1);
+  color: black;
 }
 
 .collections-grid {
@@ -1067,13 +1069,13 @@
 }
 
 .collection-info h5 {
-  color: white;
+  color: black;
   font-weight: 700;
   margin-bottom: 8px;
 }
 
 .collection-info p {
-  color: var(--text-muted);
+  color: grey;
   margin: 0;
   font-size: 0.9rem;
 }
@@ -1086,10 +1088,11 @@
   min-height: 350px;
   border: 2px dashed rgba(229, 9, 20, 0.5);
   background: rgba(229, 9, 20, 0.05);
+  color: black;
 }
 
 .collection-card.create-new:hover {
-  border-color: var(--primary-red);
+  border-color: red;
   background: rgba(229, 9, 20, 0.1);
 }
 
@@ -1102,7 +1105,7 @@
   align-items: center;
   justify-content: center;
   font-size: 3rem;
-  color: white;
+  color: black;
   margin-bottom: 20px;
   transition: transform 0.3s ease;
 }
@@ -1112,7 +1115,7 @@
 }
 
 .collection-card.create-new h5 {
-  color: white;
+  color: black;
   margin: 0;
 }
 
@@ -1164,7 +1167,7 @@
 }
 
 .analytics-content h3 {
-  color: var(--text-muted);
+  color: black;
   font-size: 0.95rem;
   font-weight: 600;
   margin-bottom: 10px;
